@@ -1,0 +1,31 @@
+haDomain = "https://xxxx.xxx" 
+haToken = "Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+critColor = "#ff0000" 
+
+[temp]
+descr = "  "
+path= "sensor.what_you_want_to_read"
+position = "top"
+valueHIDE = "-30"
+valueHIGH = "27.5"
+
+[outTemp]
+descr = ""
+path= "sensor.temperature"
+position = "top"
+valueHIDE = ""
+valueHIGH = "28"
+
+[co2]
+descr = ""
+path= "sensor.co2"
+position = "top"
+valueHIDE = "790"
+valueHIGH = "1300"
+
+[rain]
+descr = "󰖗 "
+path= "sensor.rain_today"
+position = "bottom"
+valueHIDE = "5"
+valueHIGH = "10"
