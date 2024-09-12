@@ -7,6 +7,7 @@ int main(int argc, char* argv[]){
   }
   //check if token has been changed
   filepars config;
+  bool failed = false;
   memset(&config, 0, sizeof(filepars));
   config.domain = calloc(MAX_LINE_LENGTH, sizeof(char)+1);
   config.critColor = calloc(MAX_LINE_LENGTH, sizeof(char)+1);
@@ -37,14 +38,18 @@ int main(int argc, char* argv[]){
   for(int i = 0; i <= config.sCount-1; i++){
     if(updateSensor(sensors[i],&config) == EXIT_FAILURE){
       printf("{\"text\": \"");
-      printf("ERRRR");
+      printf("url or a sensor path invalid");
+      printf("\", \"tooltip\": \"");
+      printf("url %s could be wrong\\nor a snsor path is invalid\\nmake sure every sensor has a sensor. infront of it",config.domain);
       printf("\", \"class\": \"\"}\\0");
+      failed = true;
+      break;
     }
   }
+  if(!failed)
+    printBar(sensors, config.sCount);
 
-  printBar(sensors, config.sCount);
-
-  deinitSensors(sensors, config.sCount);
+  deinitSensors(sensors, config.sCount,failed);
   free(config.token);
   free(config.domain);
   free(config.critColor);
@@ -67,12 +72,14 @@ void initSensors(haSensor* sens[], int size){
   }
 }
 
-void deinitSensors(haSensor* sens[], int size){
+void deinitSensors(haSensor* sens[], int size, bool failed){
   for(int count = 0; count <= size-1;count++){
-    free(sens[count]->answer);
-    free(sens[count]->updateURL);
-    free(sens[count]->unit);
-    free(sens[count]->colorHIGH);
+    if(!failed){
+      free(sens[count]->answer);
+      free(sens[count]->updateURL);
+      free(sens[count]->unit);
+      free(sens[count]->colorHIGH);
+    }
     free(sens[count]->descr);
     free(sens[count]->path);
     free(sens[count]);

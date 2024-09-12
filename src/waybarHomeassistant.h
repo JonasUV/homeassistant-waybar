@@ -9,7 +9,7 @@
 #include <string.h>
 
 void initSensors(haSensor* [], int);
-void deinitSensors(haSensor* [], int);
+void deinitSensors(haSensor* [], int, bool);
 void printBar(haSensor* [], int);
 
 #endif // !waybarHomeassistant

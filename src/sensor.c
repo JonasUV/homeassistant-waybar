@@ -70,7 +70,7 @@ int getData(char* data_url, char* response, char* token){
     sleep(1);
     result = curl_easy_perform(curl);
     count ++;
-}  
+  }  
   if(result == CURLE_OK) {
     char *ct;
     result = curl_easy_getinfo(curl, CURLINFO_CONTENT_TYPE, &ct);
@@ -84,6 +84,10 @@ int getData(char* data_url, char* response, char* token){
   }
   curl_easy_cleanup(curl);
   curl_slist_free_all(tokenHeader);
+  if(strstr(chunk.response,"404 ") != NULL || strstr(chunk.response,"{\"message\":\"Entity not found.\"}") != NULL) {
+    free(chunk.response);
+    return EXIT_FAILURE;
+  }
   free(chunk.response);
   return EXIT_SUCCESS;
 }
