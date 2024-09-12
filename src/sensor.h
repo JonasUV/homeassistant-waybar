@@ -25,6 +25,7 @@ typedef struct filepars{
 
 typedef struct haSensor { 
   float value;
+  int accuracy;
   float valueHIDE;
   float valueHIGH;
   char* colorHIGH;

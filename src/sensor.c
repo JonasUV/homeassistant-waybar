@@ -117,7 +117,8 @@ void printSens(haSensor * sensor, char* returnText){
     strcat(returnText,"'>"); //add color for critical values
   }
   char *tmp = malloc(10*sizeof(char));
-  sprintf(tmp,"%02.1f",sensor->value);
+  if(sensor->accuracy < 0) sensor->accuracy = 2;
+  sprintf(tmp,"%.*f",sensor->accuracy, sensor->value);
   strcat(returnText,tmp);
   free(tmp);
   if(sensor->value >= sensor->valueHIGH )  strcat(returnText,"</span>");

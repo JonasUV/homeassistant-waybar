@@ -19,6 +19,7 @@ int readHaParam(char* line, haSensor* sensor){
   if(readParam(line, tmp, "valueHIDE") == EXIT_SUCCESS) retState = 2;
   if(readParam(line, tmp, "valueHIGH") == EXIT_SUCCESS) retState = 3;
   if(readParam(line, tmp, "position") == EXIT_SUCCESS)  retState = 4;
+  if(readParam(line, tmp, "accuracy") == EXIT_SUCCESS)  retState = 5;
   
   switch(retState){
     case 1: free(tmp);
@@ -33,6 +34,10 @@ int readHaParam(char* line, haSensor* sensor){
             return EXIT_SUCCESS;
             break;
     case 4: sensor->isTopBar = stringToPos(tmp);
+            free(tmp);
+            return EXIT_SUCCESS;
+            break;
+    case 5: sensor->accuracy = atoi(tmp);
             free(tmp);
             return EXIT_SUCCESS;
             break;
