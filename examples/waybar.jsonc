@@ -1,0 +1,12 @@
+{
+    "custom/homeassistant": {
+        "exec": "/path_to_binary/waybarHomeassistant /path_to_config/hawaybar.toml",
+        "format": "{}",
+        "rotate": 0,
+        "interval": 120, // interval in seconds
+        "return-type": "json",
+        "max-length": 47,
+        "tooltip": true
+    }
+}
+

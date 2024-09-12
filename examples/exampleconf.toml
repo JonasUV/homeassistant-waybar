@@ -22,6 +22,7 @@ path= "sensor.co2"
 position = "top"
 valueHIDE = "790"
 valueHIGH = "1300"
+accuracy = "0"
 
 [rain]
 descr = "󰖗 "
@@ -29,3 +30,4 @@ path= "sensor.rain_today"
 position = "bottom"
 valueHIDE = "5"
 valueHIGH = "10"
+accuracy = "2"
