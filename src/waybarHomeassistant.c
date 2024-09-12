@@ -56,6 +56,14 @@ void initSensors(haSensor* sens[], int size){
     sens[count]         = malloc(sizeof(haSensor));
     sens[count]->path      = calloc(155,sizeof(char));
     sens[count]->descr     = calloc(12,sizeof(char));
+
+
+    //setting default values
+    sens[count]->valueHIDE  = INT_MIN;
+    sens[count]->valueHIGH  = INT_MAX;
+    sens[count]->accuracy  = 2;
+    sens[count]->colorHIGH  = "#ff000";
+    sens[count]->isTopBar  = top;
   }
 }
 
