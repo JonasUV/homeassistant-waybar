@@ -41,7 +41,6 @@ int updateSensor(haSensor* sensor, filepars* config){
 
 
 //gets raw Data from Homeassistant
-//needs free o returned char*
 int getData(char* data_url, char* response, char* token){
   struct memory chunk = {0};
   struct curl_slist *tokenHeader =  NULL;
@@ -51,6 +50,7 @@ int getData(char* data_url, char* response, char* token){
   tokenHeader = curl_slist_append(tokenHeader,tmp);
   tokenHeader = curl_slist_append(tokenHeader,"Content-Type: application/json");
   free(tmp);
+  tmp = NULL;
   if(!curl) {
     fprintf(stderr, "init failed\n");
     response = NULL;
@@ -80,15 +80,18 @@ int getData(char* data_url, char* response, char* token){
     curl_easy_cleanup(curl);
     curl_slist_free_all(tokenHeader);
     free(chunk.response);
+    chunk.response = NULL;
     return EXIT_FAILURE;
   }
   curl_easy_cleanup(curl);
   curl_slist_free_all(tokenHeader);
   if(strstr(chunk.response,"404 ") != NULL || strstr(chunk.response,"{\"message\":\"Entity not found.\"}") != NULL) {
     free(chunk.response);
+    chunk.response = NULL;
     return EXIT_FAILURE;
   }
   free(chunk.response);
+  chunk.response = NULL;
   return EXIT_SUCCESS;
 }
 
@@ -100,6 +103,7 @@ void getValue(char* search, haSensor* sensor){
   memcpy(tmp,pos,end-pos);
   sensor->value = (float)atof(tmp);
   free(tmp);
+  tmp = NULL;
 }
 
 void getUnit(char* search, haSensor* sensor){
@@ -111,6 +115,7 @@ void getUnit(char* search, haSensor* sensor){
   sensor->unit = calloc(strlen(tmp)+1,sizeof(char));
   strcpy(sensor->unit,tmp);
   free(tmp);
+  tmp = NULL;
 }
 
 void printSens(haSensor * sensor, char* returnText){
@@ -125,6 +130,7 @@ void printSens(haSensor * sensor, char* returnText){
   sprintf(tmp,"%.*f",sensor->accuracy, sensor->value);
   strcat(returnText,tmp);
   free(tmp);
+  tmp = NULL;
   if(sensor->value >= sensor->valueHIGH )  strcat(returnText,"</span>");
   strcat(returnText,sensor->unit);
 }

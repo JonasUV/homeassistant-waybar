@@ -23,26 +23,32 @@ int readHaParam(char* line, haSensor* sensor){
   
   switch(retState){
     case 1: free(tmp);
+            tmp = NULL;
             return EXIT_SUCCESS;
             break;
     case 2: sensor->valueHIDE = atof(tmp);
             free(tmp);
+            tmp = NULL;
             return EXIT_SUCCESS;
             break;
     case 3: sensor->valueHIGH = atof(tmp);
             free(tmp);
+            tmp = NULL;
             return EXIT_SUCCESS;
             break;
     case 4: sensor->isTopBar = stringToPos(tmp);
             free(tmp);
+            tmp = NULL;
             return EXIT_SUCCESS;
             break;
     case 5: sensor->accuracy = atoi(tmp);
             free(tmp);
+            tmp = NULL;
             return EXIT_SUCCESS;
             break;
     default:
       free(tmp);
+      tmp = NULL;
       return EXIT_FAILURE;
   }
 }
@@ -82,6 +88,7 @@ int countSensors(char* filepath){
   sCount = sCount == 0 ? sCount - 1 : sCount;
   fclose(fp);
   free(chunk);
+  chunk = NULL;
   return sCount;
 }
 
@@ -106,6 +113,7 @@ int readFile(char *filepath,filepars* config,haSensor* sensor[]){
   strcat(config->domain,"/api/states/");
   fclose(fp);
   free(chunk);
+  chunk = NULL;
   return EXIT_SUCCESS;
 }
 

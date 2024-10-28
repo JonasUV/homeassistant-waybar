@@ -53,6 +53,9 @@ int main(int argc, char* argv[]){
   free(config.token);
   free(config.domain);
   free(config.critColor);
+  config.token = NULL;
+  config.domain = NULL;
+  config.critColor = NULL;
   return EXIT_SUCCESS;
 }
 
@@ -79,10 +82,18 @@ void deinitSensors(haSensor* sens[], int size, bool failed){
       free(sens[count]->updateURL);
       free(sens[count]->unit);
       free(sens[count]->colorHIGH);
+
+      sens[count]->answer = NULL;
+      sens[count]->updateURL = NULL;
+      sens[count]->unit = NULL;
+      sens[count]->colorHIGH = NULL;
     }
     free(sens[count]->descr);
     free(sens[count]->path);
     free(sens[count]);
+    sens[count]->descr = NULL;
+    sens[count]->path = NULL;
+    sens[count] = NULL;
   }
 }
 
@@ -128,4 +139,6 @@ void printBar(haSensor* sensors[], int count){
   printf("\", \"class\": \"\"}\\0");
   free(bartext);
   free(tooltipText);
+  bartext = NULL;
+  tooltipText = NULL;
 }
