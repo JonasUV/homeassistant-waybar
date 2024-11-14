@@ -2,7 +2,7 @@
 
 int main(int argc, char* argv[]){
   if(argc != 2){
-    fprintf(stderr,"Please enter filepath as argument");
+    fprintf(stderr,"Please enter filepath as argument\n");
     return EXIT_FAILURE;
   }
   //check if token has been changed
@@ -19,6 +19,12 @@ int main(int argc, char* argv[]){
   config.sCount = countSensors(argv[1]);
   if(config.sCount == -1){
     fprintf(stderr,"no sensors found in config");
+    free(config.domain);
+    free(config.critColor);
+    free(config.token);
+    config.domain = NULL;
+    config.critColor = NULL;
+    config.token = NULL;
     return EXIT_FAILURE;
   }
 

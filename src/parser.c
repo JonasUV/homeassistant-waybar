@@ -77,6 +77,8 @@ int countSensors(char* filepath){
   
   if(fp == NULL){
     printf("Unable to open FILE %s\n",filepath);
+    free(chunk);
+    chunk = NULL;
     return EXIT_FAILURE;
   }
 
@@ -97,6 +99,8 @@ int readFile(char *filepath,filepars* config,haSensor* sensor[]){
   char *chunk = malloc(MAX_LINE_LENGTH*sizeof(char));
   if(fp == NULL){
     printf("Unable to open FILE %s\n",filepath);
+    free(chunk);
+    chunk = NULL;
     return EXIT_FAILURE;
   }
 
