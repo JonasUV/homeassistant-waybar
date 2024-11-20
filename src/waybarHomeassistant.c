@@ -95,10 +95,10 @@ void deinitSensors(haSensor* sens[], int size, bool failed){
       sens[count]->colorHIGH = NULL;
     }
     free(sens[count]->descr);
-    free(sens[count]->path);
-    free(sens[count]);
     sens[count]->descr = NULL;
+    free(sens[count]->path);
     sens[count]->path = NULL;
+    free(sens[count]);
     sens[count] = NULL;
   }
 }
