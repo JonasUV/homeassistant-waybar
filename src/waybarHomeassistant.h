@@ -8,8 +8,8 @@
 #include <stdbool.h>
 #include <string.h>
 
-void initSensors(haSensor* [], int);
-void deinitSensors(haSensor* [], int, bool);
-void printBar(haSensor* [], int);
+static void initSensors(haSensor* [], int);
+static void deinitSensors(haSensor* [], int, bool);
+static void printBar(haSensor* [], int);
 
 #endif // !waybarHomeassistant

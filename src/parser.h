@@ -10,10 +10,10 @@
 
  
 int readFile(char*,filepars*,haSensor*[]);
-int readParam(char*, char*,char*);
-int readHaParam(char*, haSensor*);
-int readHead(char*, char*);
+static int readParam(char*, char*,char*);
+static int readHaParam(char*, haSensor*);
+static int readHead(char*, char*);
 int countSensors(char* filepath);
-bool isHead(char*);
+static bool isHead(char*);
 
 #endif

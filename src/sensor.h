@@ -42,8 +42,8 @@ position_t stringToPos(char*);
 int getData(char*,char*,char*);
 int updateSensor(haSensor*,filepars*);
 static size_t cb(char *, size_t , size_t , void *);
-void getValue(char*, haSensor*);
-void getUnit(char*, haSensor*);
+static void getValue(char*, haSensor*);
+static void getUnit(char*, haSensor*);
 void printSens(haSensor*, char*);
 
 #endif // !sensor_h

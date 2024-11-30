@@ -1,6 +1,6 @@
 #include "parser.h"
 
-bool isHead(char* line){
+static bool isHead(char* line){
     char *start,*end;
 
     start = strstr(line,"[");
@@ -11,7 +11,7 @@ bool isHead(char* line){
   return false;
 }
 
-int readHaParam(char* line, haSensor* sensor){
+static int readHaParam(char* line, haSensor* sensor){
   int retState = -1;
   char* tmp = calloc(MAX_LINE_LENGTH,sizeof(char));
   if(readParam(line, sensor->path, "path") == EXIT_SUCCESS) retState = 1;
@@ -53,7 +53,7 @@ int readHaParam(char* line, haSensor* sensor){
   }
 }
 
-int readParam(char *line, char *hatoken,char* param){
+static int readParam(char *line, char *hatoken,char* param){
   char* pos,*end;
   pos = strstr(line,param);
  

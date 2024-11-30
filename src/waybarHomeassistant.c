@@ -65,7 +65,7 @@ int main(int argc, char* argv[]){
   return EXIT_SUCCESS;
 }
 
-void initSensors(haSensor* sens[], int size){
+static void initSensors(haSensor* sens[], int size){
   for(int count = 0; count <= size-1;count++){
     sens[count]         = malloc(sizeof(haSensor));
     sens[count]->path      = calloc(155,sizeof(char));
@@ -81,7 +81,7 @@ void initSensors(haSensor* sens[], int size){
   }
 }
 
-void deinitSensors(haSensor* sens[], int size, bool failed){
+static void deinitSensors(haSensor* sens[], int size, bool failed){
   for(int count = 0; count <= size-1;count++){
     if(!failed){
       free(sens[count]->answer);
@@ -103,7 +103,7 @@ void deinitSensors(haSensor* sens[], int size, bool failed){
   }
 }
 
-void printBar(haSensor* sensors[], int count){
+static void printBar(haSensor* sensors[], int count){
   char* bartext = malloc(300*sizeof(char));
   *bartext = '\0';
   char* tooltipText = malloc(500*sizeof(char));

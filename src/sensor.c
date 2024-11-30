@@ -95,7 +95,7 @@ int getData(char* data_url, char* response, char* token){
   return EXIT_SUCCESS;
 }
 
-void getValue(char* search, haSensor* sensor){
+static void getValue(char* search, haSensor* sensor){
   char* pos = strstr(sensor->answer, search) + strlen(search) + strlen("\":\"");
   char* end = strstr(pos,"\"");
   
@@ -106,7 +106,7 @@ void getValue(char* search, haSensor* sensor){
   tmp = NULL;
 }
 
-void getUnit(char* search, haSensor* sensor){
+static void getUnit(char* search, haSensor* sensor){
   char* pos = strstr(sensor->answer, search) + strlen(search) + strlen("\":\"");
   char* end = strstr(pos,"\"");
   
