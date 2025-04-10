@@ -17,6 +17,6 @@ make
 Now you can start using the binary
 
 # Writing the Config File
-take a look at the examples in the example folder
+take a look at the examples in the [example folder](examples)
 
 only required value is the Path to your sensor
